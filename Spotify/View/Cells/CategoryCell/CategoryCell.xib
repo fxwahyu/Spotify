@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CategoryCell" customModule="Spotify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="105" height="48"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="105" height="48"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TiN-wg-GSZ">
+                        <rect key="frame" x="0.0" y="0.0" width="105" height="48"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlists" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ja-e6-Tip">
+                                <rect key="frame" x="16" y="8" width="73" height="32"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="8ja-e6-Tip" secondAttribute="bottom" constant="8" id="ZAn-1W-1uX"/>
+                            <constraint firstAttribute="trailing" secondItem="8ja-e6-Tip" secondAttribute="trailing" constant="16" id="gzo-6E-Kw7"/>
+                            <constraint firstItem="8ja-e6-Tip" firstAttribute="top" secondItem="TiN-wg-GSZ" secondAttribute="top" constant="8" id="lb0-wa-ZD4"/>
+                            <constraint firstItem="8ja-e6-Tip" firstAttribute="leading" secondItem="TiN-wg-GSZ" secondAttribute="leading" constant="16" id="thO-fz-MIK"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="TiN-wg-GSZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8NK-ya-Xyv"/>
+                <constraint firstAttribute="bottom" secondItem="TiN-wg-GSZ" secondAttribute="bottom" id="DjV-yB-V1E"/>
+                <constraint firstItem="TiN-wg-GSZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Vee-Nh-yH9"/>
+                <constraint firstAttribute="trailing" secondItem="TiN-wg-GSZ" secondAttribute="trailing" id="zpY-dm-BYc"/>
+            </constraints>
+            <size key="customSize" width="105" height="48"/>
+            <connections>
+                <outlet property="viewBackground" destination="TiN-wg-GSZ" id="g04-Ja-hnR"/>
+            </connections>
+            <point key="canvasLocation" x="96.946564885496173" y="19.014084507042256"/>
+        </collectionViewCell>
+    </objects>
+</document>
