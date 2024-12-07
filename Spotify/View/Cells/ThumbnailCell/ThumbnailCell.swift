@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ThumbnailCell: UICollectionViewCell {
 
@@ -16,7 +17,7 @@ class ThumbnailCell: UICollectionViewCell {
     }
     
     private func setImage(imageUrl: String) {
-        thumbnailImage.image = 
+        thumbnailImage.kf.setImage(with: URL(string: imageUrl))
     }
 
 }
