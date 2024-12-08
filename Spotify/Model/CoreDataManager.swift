@@ -36,24 +36,24 @@ extension CoreDataManager {
         
         let object = T(entity: entity, insertInto: context)
         
-        // Call the throwing configuration closure
         try configuration(object)
         
         do {
             try context.save()
+            print("save success")
         } catch {
             context.rollback()
+            print("save failed")
             throw error
         }
     }
 }
 
 extension CoreDataManager {
-    func fetch<T: NSManagedObject>(_ objectType: T.Type, predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) throws -> [T] {
+    func fetch<T: NSManagedObject>(_ objectType: T.Type, predicate: NSPredicate? = nil) throws -> [T] {
         let entityName = String(describing: objectType)
         let request = NSFetchRequest<T>(entityName: entityName)
         request.predicate = predicate
-        request.sortDescriptors = sortDescriptors
         
         do {
             return try context.fetch(request)
@@ -64,51 +64,77 @@ extension CoreDataManager {
 }
 
 extension CoreDataManager {
-    
-    // Save a new Playlist with an array of musics
-    
     func saveNewPlaylist(name: String) throws {
         try save(Playlist.self) { playlist in
             playlist.name = name
         }
     }
     
-    func updatePlaylist(playlist: Playlist, musics: [TrackModel]) throws {
-        // Add musics to the playlist
-        for musicData in musics {
+    func addTrackToPlaylist(playlistName: String, musicModel: TrackModel) throws {
+        do {
+            let playlists: [Playlist] = try fetch(Playlist.self, predicate: NSPredicate(format: "name == %@", "\(playlistName)"))
+            
             try save(Track.self) { music in
-                music.wrapperType = musicData.wrapperType
-                music.kind = musicData.kind
-                music.artistId = Int64(musicData.artistID ?? 0)
-                music.collectionId = Int64(musicData.collectionID ?? 0)
-                music.trackId = Int64(musicData.trackID ?? 0)
-                music.artistName = musicData.artistName
-                music.collectionName = musicData.collectionName
-                music.trackName = musicData.trackName
-                music.collectionCensoredName = musicData.collectionCensoredName
-                music.trackCensoredName = musicData.trackCensoredName
-                music.artistViewUrl = musicData.artistViewURL
-                music.collectionViewUrl = musicData.collectionViewURL
-                music.trackViewUrl = musicData.trackViewURL
-                music.previewUrl = musicData.previewURL
-                music.artworkUrl30 = musicData.artworkUrl30
-                music.artworkUrl60 = musicData.artworkUrl60
-                music.artworkUrl100 = musicData.artworkUrl100
-                music.releaseDate = musicData.releaseDate
-                music.collectionExplicitness = musicData.collectionExplicitness
-                music.trackExplicitness = musicData.trackExplicitness
-                music.discCount = Int16(musicData.discCount ?? 0)
-                music.discNumber = Int16(musicData.discNumber ?? 0)
-                music.trackCount = Int16(musicData.trackCount ?? 0)
-                music.trackNumber = Int16(musicData.trackNumber ?? 0)
-                music.trackTimeMillis = Int64(musicData.trackTimeMillis ?? 0)
-                music.country = musicData.country
-                music.currency = musicData.currency
-                music.primaryGenreName = musicData.primaryGenreName
-                music.contentAdvisoryRating = musicData.contentAdvisoryRating
-                music.isStreamable = musicData.isStreamable ?? true
-                music.playlist = playlist
+                music.artistId = Int64(musicModel.artistId ?? 0)
+                music.trackId = Int64(musicModel.trackId ?? 0)
+                music.artistName = musicModel.artistName ?? ""
+                music.trackName = musicModel.trackName ?? ""
+                music.artworkUrl100 = musicModel.artworkUrl100 ?? ""
+                music.releaseDate = musicModel.releaseDate ?? ""
+                music.country = musicModel.country ?? ""
+                playlists.first?.addToTracks(music)
             }
+        } catch {
+            print("Failed to fetch or add musics: \(error)")
+        }
+    }
+    
+    func isPlaylistDuplicated(name: String) -> Bool {
+        do {
+            let playlists: [Playlist] = try CoreDataManager.shared.fetch(Playlist.self, predicate: NSPredicate(format: "name == %@", "\(name)"))
+            if playlists.isEmpty { return false }
+            return true
+        } catch {
+            return true
+        }
+    }
+    
+    func isTrackDuplicated(playlistName: String, track: TrackModel) -> Bool {
+        do {
+            let playlists: [Playlist] = try fetch(Playlist.self, predicate: NSPredicate(format: "name == %@", "\(playlistName)"))
+            
+            var tracksArray: [Track] = []
+            if let tracks = playlists.first?.tracks as? Set<Track> {
+                tracksArray = tracks.sorted { $0.trackName ?? "" < $1.trackName ?? "" }
+            }
+            
+            if tracksArray.isEmpty { return false }
+            else {
+                for t in tracksArray {
+                    if t.trackId == track.trackId! { return true }
+                }
+                return false
+            }
+        } catch {
+            return false
+        }
+    }
+}
+
+extension CoreDataManager {
+    func deleteAllData(for entity: String) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        fetchRequest.includesPropertyValues = false
+        
+        do {
+            let objects = try context.fetch(fetchRequest)
+            for case let object as NSManagedObject in objects {
+                context.delete(object)
+            }
+            try context.save()
+            print("All data deleted successfully from \(entity).")
+        } catch let error {
+            print("Failed to delete all data from \(entity): \(error.localizedDescription)")
         }
     }
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="PlaylistTableviewCell" customModule="Spotify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="359" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXp-eI-OWa">
+                        <rect key="frame" x="12" y="8" width="67" height="67"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="67" id="fUN-La-OdP"/>
+                            <constraint firstAttribute="height" constant="67" id="xEj-EZ-9y3"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="fsX-u7-mNi">
+                        <rect key="frame" x="93" y="16" width="254" height="51"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGo-4V-FlQ">
+                                <rect key="frame" x="0.0" y="0.0" width="254" height="25.666666666666668"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDu-pB-xgN">
+                                <rect key="frame" x="0.0" y="25.666666666666664" width="254" height="25.333333333333336"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="13"/>
+                                <color key="textColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="fsX-u7-mNi" secondAttribute="trailing" constant="12" id="27g-MH-i6Y"/>
+                    <constraint firstItem="fsX-u7-mNi" firstAttribute="top" secondItem="uXp-eI-OWa" secondAttribute="top" constant="8" id="9N6-sj-kEg"/>
+                    <constraint firstItem="fsX-u7-mNi" firstAttribute="leading" secondItem="uXp-eI-OWa" secondAttribute="trailing" constant="14" id="J02-sO-OH7"/>
+                    <constraint firstItem="uXp-eI-OWa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="LmQ-bq-Qjt"/>
+                    <constraint firstItem="fsX-u7-mNi" firstAttribute="bottom" secondItem="uXp-eI-OWa" secondAttribute="bottom" constant="-8" id="Nuz-he-4ap"/>
+                    <constraint firstAttribute="bottom" secondItem="uXp-eI-OWa" secondAttribute="bottom" constant="8" id="oko-j1-tB7"/>
+                    <constraint firstItem="uXp-eI-OWa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="sca-iy-4ur"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="playlistNameLabel" destination="NGo-4V-FlQ" id="2CF-57-Fhg"/>
+                <outlet property="playlistSongsCountLabel" destination="eDu-pB-xgN" id="BOs-IW-1bs"/>
+                <outlet property="thumbnailGridView" destination="uXp-eI-OWa" id="WE1-iW-X3t"/>
+            </connections>
+            <point key="canvasLocation" x="55.725190839694655" y="39.436619718309863"/>
+        </tableViewCell>
+    </objects>
+</document>

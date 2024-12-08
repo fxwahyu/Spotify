@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ThumbnailGridView" customModule="Spotify" customModuleProvider="target">
+            <connections>
+                <outlet property="thumbnailCollectionView" destination="Kcw-tW-OeB" id="LAH-ix-ztb"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="413" height="449"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kcw-tW-OeB">
+                    <rect key="frame" x="0.0" y="59" width="413" height="356"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="UVa-8F-OVe">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="jXD-Ir-a9G"/>
+                        <outlet property="delegate" destination="-1" id="jlz-dm-Jcc"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Kcw-tW-OeB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="819-c1-p3V"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Kcw-tW-OeB" secondAttribute="bottom" id="Mgd-ds-ARJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Kcw-tW-OeB" secondAttribute="trailing" id="YTw-YW-Gfi"/>
+                <constraint firstItem="Kcw-tW-OeB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="txr-ix-gBG"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="41.984732824427482" y="-122.1830985915493"/>
+        </view>
+    </objects>
+</document>

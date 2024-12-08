@@ -13,7 +13,12 @@ class TabbarVC: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         setupTabbar()
 
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     func setupTabbar() {
@@ -30,7 +35,9 @@ class TabbarVC: UITabBarController, UITabBarControllerDelegate {
         tabbarLibrary.tabBarItem = UITabBarItem(title: "Your Library", image: #imageLiteral(resourceName: "library"), selectedImage: #imageLiteral(resourceName: "library"))
         
         self.viewControllers = [tabbarHome, tabbarSearch, tabbarLibrary]
-        self.tabBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        self.tabBar.barTintColor = .black
+        self.tabBar.tintColor = .white
+        self.tabBar.unselectedItemTintColor = .gray
         
         self.selectedIndex = 2
     }

@@ -18,6 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
             <point key="canvasLocation" x="105" y="21"/>
         </view>
     </objects>

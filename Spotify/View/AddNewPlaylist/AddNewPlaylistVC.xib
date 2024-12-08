@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewPlaylistVC" customModule="Spotify" customModuleProvider="target">
+            <connections>
+                <outlet property="confirmButton" destination="ys1-At-ofl" id="UXI-gU-mVN"/>
+                <outlet property="playlistNameTextField" destination="Xam-Hm-Kaq" id="7rj-2o-Wjl"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name your playlist." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScN-c8-AVp">
+                    <rect key="frame" x="83.666666666666686" y="229" width="226" height="33"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xam-Hm-Kaq">
+                    <rect key="frame" x="41" y="362" width="311" height="34.666666666666686"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J15-Du-s4S">
+                    <rect key="frame" x="38" y="404.66666666666669" width="317" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="JS2-EJ-Xhe"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ys1-At-ofl">
+                    <rect key="frame" x="126.66666666666669" y="446.66666666666669" width="140" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="Gf9-3S-qKw"/>
+                        <constraint firstAttribute="height" constant="52" id="gyv-xL-tic"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Confirm" cornerStyle="capsule">
+                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="baseBackgroundColor" red="0.1176470588" green="0.84313725490000002" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="confirmButtonTapped:" destination="-1" eventType="touchUpInside" id="GzO-xN-iQl"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ScN-c8-AVp" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="4Hd-ST-jiT"/>
+                <constraint firstItem="J15-Du-s4S" firstAttribute="top" secondItem="Xam-Hm-Kaq" secondAttribute="bottom" constant="8" id="HJT-W8-DJL"/>
+                <constraint firstItem="ScN-c8-AVp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="170" id="M1W-s4-v1i"/>
+                <constraint firstItem="ys1-At-ofl" firstAttribute="top" secondItem="J15-Du-s4S" secondAttribute="bottom" constant="41" id="OC3-7g-1rv"/>
+                <constraint firstItem="ys1-At-ofl" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Pu8-yD-35h"/>
+                <constraint firstItem="Xam-Hm-Kaq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="41" id="Vfp-BG-Hyd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="J15-Du-s4S" secondAttribute="trailing" constant="38" id="ZTA-DK-MBk"/>
+                <constraint firstItem="J15-Du-s4S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="38" id="jXi-EL-ZBx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Xam-Hm-Kaq" secondAttribute="trailing" constant="41" id="tdf-mq-Rrp"/>
+                <constraint firstItem="Xam-Hm-Kaq" firstAttribute="top" secondItem="ScN-c8-AVp" secondAttribute="bottom" constant="100" id="uC8-st-QOa"/>
+            </constraints>
+            <point key="canvasLocation" x="42" y="20"/>
+        </view>
+    </objects>
+</document>

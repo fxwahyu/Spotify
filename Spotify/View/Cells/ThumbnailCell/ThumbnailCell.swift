@@ -16,8 +16,20 @@ class ThumbnailCell: UICollectionViewCell {
         // Initialization code
     }
     
-    private func setImage(imageUrl: String) {
-        thumbnailImage.kf.setImage(with: URL(string: imageUrl))
+    func setImage(imageUrl: String) {
+        if imageUrl == "" {
+            thumbnailImage.image = grayPlaceholderImage(size: CGSize(width: self.frame.size.width, height: self.frame.size.height))
+        } else {
+            thumbnailImage.kf.setImage(with: URL(string: imageUrl))
+        }
+    }
+    
+    func grayPlaceholderImage(size: CGSize) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { context in
+            UIColor.gray.setFill()
+            context.fill(CGRect(origin: .zero, size: size))
+        }
     }
 
 }
