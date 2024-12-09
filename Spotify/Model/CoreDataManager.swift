@@ -82,6 +82,7 @@ extension CoreDataManager {
                 music.artworkUrl100 = musicModel.artworkUrl100 ?? ""
                 music.releaseDate = musicModel.releaseDate ?? ""
                 music.country = musicModel.country ?? ""
+                music.kind = musicModel.kind ?? ""
                 playlists.first?.addToTracks(music)
             }
         } catch {

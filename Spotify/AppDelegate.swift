@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = nav1
         self.window?.makeKeyAndVisible()
         
+        UserPreference.shared.initializeRecentSearchesUserDefault()
+        
         return true
     }
     

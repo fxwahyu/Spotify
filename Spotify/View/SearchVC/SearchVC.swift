@@ -12,6 +12,7 @@ class SearchVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchListTableView: UITableView!
     @IBOutlet weak var loading: UIActivityIndicatorView!
+    @IBOutlet weak var recentSearchesLabel: UILabel!
     
     var vm = SearchVM()
     private var searchTimer: Timer?
@@ -25,6 +26,15 @@ class SearchVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if vm.isRecentSearchesAvailable() {
+            vm.fetchTracksFromCoreData()
+        } else {
+            recentSearchesLabel.isHidden = true
+        }
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         searchTimer?.invalidate()
     }
@@ -33,6 +43,12 @@ class SearchVC: UIViewController {
         vm.listOfTracks.bind { _ in
             DispatchQueue.main.async {
                 self.loading.stopAnimating()
+                self.searchListTableView.reloadData()
+            }
+        }
+        
+        vm.listOfRecentSearches.bind { _ in
+            DispatchQueue.main.async {
                 self.searchListTableView.reloadData()
             }
         }
@@ -57,41 +73,68 @@ class SearchVC: UIViewController {
     @IBAction func cancelButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
+    private func changeListView() {
+        if vm.listMode == .RECENT {
+            recentSearchesLabel.isHidden = false
+        } else {
+            recentSearchesLabel.isHidden = true
+        }
+    }
 }
 
 extension SearchVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         loading.startAnimating()
+        searchTimer?.invalidate()
+        
         if searchText.isEmpty {
-            // show recent
+            vm.listMode = .RECENT
+            self.changeListView()
+            searchTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
+                self.searchListTableView.reloadData()
+                self.searchTimer?.invalidate()
+                self.loading.stopAnimating()
+            }
         } else {
-            searchTimer?.invalidate()
             guard !searchText.isEmpty else { return }
-            
-            searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            vm.listMode = .SEARCH
+            self.changeListView()
+            searchTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
                 self.vm.searchInput = searchText
                 self.searchTimer?.invalidate()
             }
-            
         }
+        
+        
     }
 }
 
 extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        vm.listOfTracks.value.count
+        if vm.listMode == .RECENT {
+            return vm.listOfRecentSearches.value.count
+        }
+        
+        return vm.listOfTracks.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCell", for: indexPath) as! TrackCell
-        cell.setData(track: vm.listOfTracks.value[indexPath.row])
+        if vm.listMode == .RECENT {
+            cell.setData(track: vm.listOfRecentSearches.value[indexPath.row], withKind: true)
+        } else {
+            cell.setData(track: vm.listOfTracks.value[indexPath.row], withKind: false)
+        }
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let track = vm.listOfTracks.value[indexPath.row]
-        showConfirmationPopup(track: track)
+        if vm.listMode == .SEARCH {
+            let track = vm.listOfTracks.value[indexPath.row]
+            showConfirmationPopup(track: track)
+        }
     }
     
     private func showConfirmationPopup(track: TrackModel) {

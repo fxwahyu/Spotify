@@ -2,7 +2,7 @@
 //  Track+CoreDataProperties.swift
 //  Spotify
 //
-//  Created by Wahyu Herdianto on 07/12/24.
+//  Created by Wahyu Herdianto on 09/12/24.
 //
 //
 
@@ -23,6 +23,7 @@ extension Track {
     @NSManaged public var releaseDate: String?
     @NSManaged public var trackId: Int64
     @NSManaged public var trackName: String?
+    @NSManaged public var kind: String?
     @NSManaged public var playlists: NSSet?
 
 }

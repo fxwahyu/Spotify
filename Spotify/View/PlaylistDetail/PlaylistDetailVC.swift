@@ -65,7 +65,7 @@ extension PlaylistDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCell", for: indexPath) as! TrackCell
-        cell.setData(track: vm.getArrayOfTracks()[indexPath.row])
+        cell.setData(track: vm.getArrayOfTracks()[indexPath.row], withKind: false)
         return cell
     }
     

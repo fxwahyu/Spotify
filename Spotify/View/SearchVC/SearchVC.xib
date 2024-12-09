@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchVC" customModule="Spotify" customModuleProvider="target">
             <connections>
                 <outlet property="loading" destination="HGb-8g-3Mc" id="due-ch-CCc"/>
+                <outlet property="recentSearchesLabel" destination="Hkg-gr-Lh0" id="4hC-hH-Ufv"/>
                 <outlet property="searchBar" destination="VUv-Ks-LgC" id="yam-m7-KwU"/>
                 <outlet property="searchListTableView" destination="dSM-60-YTn" id="5W5-DX-4Vd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VUv-Ks-LgC">
-                    <rect key="frame" x="12" y="73" width="311" height="56"/>
+                    <rect key="frame" x="12" y="73" width="311" height="44.666666666666657"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -30,16 +31,8 @@
                         <outlet property="delegate" destination="-1" id="rFq-Sl-7Qf"/>
                     </connections>
                 </searchBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="68" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dSM-60-YTn">
-                    <rect key="frame" x="12" y="149" width="369" height="669"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="sdw-C2-836"/>
-                        <outlet property="delegate" destination="-1" id="Z5A-yB-ZyU"/>
-                    </connections>
-                </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFJ-4r-P5w">
-                    <rect key="frame" x="333" y="83.666666666666671" width="48" height="35"/>
+                    <rect key="frame" x="333" y="78" width="48" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="2or-Gk-ef8"/>
                     </constraints>
@@ -52,23 +45,46 @@
                         <action selector="cancelButton:" destination="-1" eventType="touchUpInside" id="QIh-AL-ooy"/>
                     </connections>
                 </button>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HGb-8g-3Mc">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="A27-uU-vt0">
+                    <rect key="frame" x="12" y="137.66666666666669" width="369" height="680.33333333333326"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent searches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkg-gr-Lh0">
+                            <rect key="frame" x="0.0" y="0.0" width="126.33333333333333" height="23.333333333333332"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="68" estimatedRowHeight="68" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dSM-60-YTn">
+                            <rect key="frame" x="0.0" y="43.333333333333371" width="369" height="637"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="sdw-C2-836"/>
+                                <outlet property="delegate" destination="-1" id="Z5A-yB-ZyU"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="dSM-60-YTn" firstAttribute="leading" secondItem="A27-uU-vt0" secondAttribute="leading" id="3ld-9Z-dQ5"/>
+                        <constraint firstAttribute="trailing" secondItem="dSM-60-YTn" secondAttribute="trailing" id="Kxt-7f-I2A"/>
+                        <constraint firstAttribute="bottom" secondItem="dSM-60-YTn" secondAttribute="bottom" id="n3U-fW-o73"/>
+                    </constraints>
+                </stackView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HGb-8g-3Mc">
                     <rect key="frame" x="178" y="465" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="A27-uU-vt0" firstAttribute="top" secondItem="VUv-Ks-LgC" secondAttribute="bottom" constant="20" id="8kk-QP-xmB"/>
                 <constraint firstItem="ZFJ-4r-P5w" firstAttribute="centerY" secondItem="VUv-Ks-LgC" secondAttribute="centerY" id="A1l-pd-Bul"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dSM-60-YTn" secondAttribute="trailing" constant="12" id="HsJ-wJ-n0R"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dSM-60-YTn" secondAttribute="bottom" id="J0P-Ri-K8z"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="A27-uU-vt0" secondAttribute="trailing" constant="12" id="C8o-H5-pda"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="A27-uU-vt0" secondAttribute="bottom" id="JE6-BI-woh"/>
                 <constraint firstItem="VUv-Ks-LgC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="14" id="MoK-Aa-Cme"/>
+                <constraint firstItem="A27-uU-vt0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="PUa-uZ-kwk"/>
                 <constraint firstItem="ZFJ-4r-P5w" firstAttribute="leading" secondItem="VUv-Ks-LgC" secondAttribute="trailing" constant="10" id="hlw-1p-em4"/>
-                <constraint firstItem="HGb-8g-3Mc" firstAttribute="centerX" secondItem="dSM-60-YTn" secondAttribute="centerX" id="meZ-TA-dZj"/>
-                <constraint firstItem="dSM-60-YTn" firstAttribute="top" secondItem="VUv-Ks-LgC" secondAttribute="bottom" constant="20" id="odV-sk-Glx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZFJ-4r-P5w" secondAttribute="trailing" constant="12" id="sj6-7U-TBd"/>
-                <constraint firstItem="dSM-60-YTn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="smv-ax-Tmh"/>
-                <constraint firstItem="HGb-8g-3Mc" firstAttribute="centerY" secondItem="dSM-60-YTn" secondAttribute="centerY" id="xkt-gP-HFX"/>
                 <constraint firstItem="VUv-Ks-LgC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="xqB-0n-Rwk"/>
             </constraints>
             <point key="canvasLocation" x="41.984732824427482" y="19.718309859154932"/>
